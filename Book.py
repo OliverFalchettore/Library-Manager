@@ -20,6 +20,3 @@ class Book:
     def delete_book(self, rowid):
         pass
 
-    #TODO: Search the book and return it
-    def search_book(self, title):
-        pass
