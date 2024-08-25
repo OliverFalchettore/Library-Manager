@@ -16,7 +16,3 @@ class Book:
                                 )
         db.conn.commit()
 
-    #TODO: Delete books from the database    
-    def delete_book(self, rowid):
-        pass
-

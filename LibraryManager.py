@@ -19,19 +19,28 @@ def add_books():
 
     new_book.add_book()
 
+def delete_book():
+    display_book()
+    rowID_select = input("Select rowID you want to delete: ")
+    db.c.execute("DELETE from books WHERE rowid = ?", (rowID_select,))
+    
+
 #Make it display all the books in database
-def search_book():
-    db.c.execute("SELECT * FROM books")
+def display_book():
+    db.c.execute("SELECT rowid, * FROM books")
     items = db.c.fetchall()
 
     # Print table headers
-    print(f"{'TITLE':<30}{'AUTHOR':<25}{'GENRE':<20}{'ISBN#':<15}")
-    print(f"{'-'*30}{'-'*25}{'-'*20}{'-'*15}")
+    print(f"{'ROWID':<15}{'TITLE':<30}{'AUTHOR':<25}{'GENRE':<20}{'ISBN#':<15}")
+    print(f"{'-'*30}{'-'*25}{'-'*20}{'-'*15}{'-'*20}")
 
     # Print each item in a formatted way
     for item in items:
-        title, author, genre, isbn = item
-        print(f"{title:<30}{author:<25}{genre:<20}{isbn:<15}")
+        rowid, title, author, genre, isbn = item
+        print(f"{rowid:<15}{title:<30}{author:<25}{genre:<20}{isbn:<15}")
+
+    print("\n")
+
 
 while True:
     display()
@@ -39,10 +48,9 @@ while True:
     if choice == '1':
         add_books()
     elif choice == '2':
-        print("You chose to delete a book.")
-        # Delete book logic here
+        delete_book()
     elif choice == '3':
-        search_book()
+        display_book()
     elif choice == '4':
         print("Quitting the program.")
         db.conn.close()

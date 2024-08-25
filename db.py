@@ -1,7 +1,7 @@
 import sqlite3
 import os 
 
-path = 'C:/Users/olitt/OneDrive/Documentos/python/LibraryManager/books.db'
+path = 'C:/Users/olitt/Documents/python/Library-Manager/books.db'
 isExisting = os.path.exists(path)
 
 conn = sqlite3.connect(path)
